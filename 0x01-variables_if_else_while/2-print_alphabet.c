@@ -1,8 +1,9 @@
 #include <stdio.h>
 
-/* This code prints the alphabet */
-/* The alphabet trick*/
-int main(void) /* Is this how you  describe it betty+? */
+/* this fuction displays the alphabet in lowercase */
+
+int main(void)
+
 {
 	char c;
 
