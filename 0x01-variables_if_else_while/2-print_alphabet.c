@@ -2,7 +2,7 @@
 
 /* this fuction displays the alphabet in lowercase */
 
-int main(void)
+int main(void) /* is this what you want? */
 
 {
 	char c;
