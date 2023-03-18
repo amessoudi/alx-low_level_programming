@@ -1,8 +1,11 @@
 #include <stdio.h>
-
-/* this fuction displays the alphabet in lowercase */
-
-int main(void) /* is this what you want? */
+/**
+  * main - print alphabet
+  * Prints from a to z
+  *
+  * Return: Always 0
+  */
+int main(void)
 
 {
 	char c;
