@@ -6,7 +6,7 @@ int main(void) /* Is this how you  describe it betty+? */
 {
 	char c;
 
-	for (c = 'a', c <= 'z', ++c)
+	for (c = 'a'; c <= 'z'; ++c)
 		putchar(c);
 	putchar('\n');
 	return (0);
