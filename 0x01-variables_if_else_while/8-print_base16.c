@@ -8,8 +8,6 @@
 int main(void)
 
 {
-	int n;
-
 	int i;
 
 	for (i = 0; i < 16; i++)
