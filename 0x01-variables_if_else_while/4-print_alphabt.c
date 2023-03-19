@@ -1,17 +1,18 @@
 #include <stdio.h>
 /**
-  * main - print alphabet
-  * Prints from a to z then from A to Z
-  *
-  * Return: Always 0
-  */
+ * main - Entry point
+ *
+ * Return: Always 0 (Success)
+ */
 int main(void)
-
 {
-	char c;
+	char str;
 
-	for (c = 'a'; c != 'q' && c != 'e'; ++c)
-		putchar(c);
+	for (str = 'a'; str <= 'z'; str++)
+	{
+		if (str != 'e' && str != 'q')
+			putchar(str);
+	}
 	putchar('\n');
 	return (0);
 }
