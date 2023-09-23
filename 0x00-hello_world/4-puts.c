@@ -1,10 +1,10 @@
 #include <stdio.h>
 /**
- *puts - prints a String
+ *main - Entry point
  *
  *Description: this function allows me to print
  *a string without having to use printf
- *Return: prints the string 
+ *Return: Always 0 (sucess)
  */
 
 int main(void)
