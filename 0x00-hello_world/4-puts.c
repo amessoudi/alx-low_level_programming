@@ -1,8 +1,10 @@
 #include <stdio.h>
 /**
- *This fuction prints an exact string
+ *puts - prints a String
  *
- *The return is Zero
+ *Description: this function allows me to print
+ *a string without having to use printf
+ *Return: prints the string 
  */
 
 int main(void)
