@@ -9,10 +9,7 @@
 
 int main(void)
 {
-	int a;
-	int b;
-	int c;
-	int d;
+	int a, b, c, d;
 
 	a = b = 48;
 
@@ -21,7 +18,7 @@ int main(void)
 		b = 48;
 		while (b <= 57)
 		{
-			c = 49;
+			c = a;
 			if (b < 57)
 			{
 				d = b + 1;
@@ -39,22 +36,22 @@ int main(void)
 					putchar(32);
 					putchar(c);
 					putchar(d);
-					if(!(a == 57 && b == 56 && c == 57 && d == 57))
+					
+					if(!(c == 57 && d == 57 && a == 57 && b == 56))
 					{
 						putchar(',');
 						putchar(32);
 					}
-				d++;
+					d++;
 				}
+				c++;
+				d = 48;
 			}
-			c++;
-			d = 48;
+			b++;
 		}
-		b++;
+		a++;
 		
 	}
-	a++;
-			
 
 	putchar ('\n');
 	return (0);
