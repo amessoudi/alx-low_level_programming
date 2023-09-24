@@ -4,7 +4,7 @@
  * main - Entry point
  *
  * Description: Prints all combination of single digit numbers
- * return :  Always 0 (succss)
+ * Return:  Always 0 (succss)
  */
 
 int main(void)
@@ -21,5 +21,5 @@ int main(void)
 		}
 	}
 	putchar ('\n');
-	return 0;
+	return (0);
 }
