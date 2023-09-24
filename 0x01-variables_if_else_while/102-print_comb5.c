@@ -14,38 +14,47 @@ int main(void)
 	int c;
 	int d;
 
-	a = b = c = 48;
-	d = 49;
+	a = b = 48;
 
 	while (a <= 57)
 	{
-		c = 48;
-		while (c <= 57)
+		b = 48;
+		while (b <= 57)
 		{
-			d = 49;
-			while (d <= 57)
+			c = 49;
+			if (b < 57)
 			{
-				putchar(a);
-				putchar(b);
-				putchar(32);
-				putchar(c);
-				putchar(d);
-				if(!(a == 57 && b == 56 && c == 57 && d == 57))
+				d = b + 1;
+			}
+			else
+			{
+				d = 48;
+			}
+			while (c <= 57)
+			{
+				while (d <= 57)
 				{
-					putchar(',');
+					putchar(a);
+					putchar(b);
 					putchar(32);
-					d++;
+					putchar(c);
+					putchar(d);
+					if(!(a == 57 && b == 56 && c == 57 && d == 57))
+					{
+						putchar(',');
+						putchar(32);
+					}
+				d++;
 				}
 			}
 			c++;
+			d = 48;
 		}
 		b++;
-		if (b > 57)
-		{
-			b = 48;
-		}
-		a++;
-	}		
+		
+	}
+	a++;
+			
 
 	putchar ('\n');
 	return (0);
