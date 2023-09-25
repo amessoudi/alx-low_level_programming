@@ -6,7 +6,7 @@
  *@a: the chessboard length
  *
  * Description: prints the chessboard
- * Return: 0 (Success)
+ * Return: Void
  */
 
 void print_chessboard(char (*a)[8])
@@ -22,5 +22,4 @@ void print_chessboard(char (*a)[8])
 		}
 		printf('\n');
 	}
-	return (0);
 }
