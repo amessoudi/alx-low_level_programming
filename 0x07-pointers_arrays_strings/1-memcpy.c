@@ -1,4 +1,6 @@
 #include "main.h"
+#include <stdio.h>
+
 /**
  * _memcpy - Entry point
  * @dest: destination memory area
@@ -8,7 +10,6 @@
  * Description: copies n bytes from src to dst
  * Return: *dest
  */
-
 char *_memcpy(char *dest, char *src, unsigned int n)
 {
 	unsigned int i;
