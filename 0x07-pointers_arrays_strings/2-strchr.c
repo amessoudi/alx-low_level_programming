@@ -2,7 +2,7 @@
 #include <stdlib.h>
 /**
  * *_strchr - Main entry
- *@*s: pointer to the string s
+ *@s: pointer to the string s
  *@c: the char we're looking for
  *
  *Description: REturns a pointer to the first occ of char
