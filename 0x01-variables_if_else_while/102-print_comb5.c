@@ -1,58 +1,40 @@
-#include <stdio.h>
+#include<stdio.h>
 
 /**
- * main - Entry point
- *
- * Description: Prints all combination of single digit numbers
- * Return:  Always 0 (succss)
+ * main - Entry Point
+ * Description: Write a program that prints all possible
+ * different combinations of two digits
+ * Return: 0
  */
 
 int main(void)
 {
-	int a, b, c, d;
+	int firstDigit = 0, seconDigit;
 
-	a = b = 48;
-
-	while (a <= 57)
+	while (firstDigit <= 99)
 	{
-		b = 48;
-		while (b <= 57)
+		seconDigit = firstDigit;
+		while (seconDigit <= 99)
 		{
-			c = a;
-			if (b < 57)
+			if (seconDigit != firstDigit)
 			{
-				d = b + 1;
-			}
-			else
-			{
-				d = 48;
-			}
-			while (c <= 57)
-			{
-				while (d <= 57)
-				{
-					putchar(a);
-					putchar(b);
-					putchar(32);
-					putchar(c);
-					putchar(d);
-					
-					if(!(c == 57 && d == 57 && a == 57 && b == 56))
-					{
-						putchar(',');
-						putchar(32);
-					}
-					d++;
-				}
-				c++;
-				d = 48;
-			}
-			b++;
-		}
-		a++;
-		
-	}
+				putchar((firstDigit / 10) + 48);
+				putchar((firstDigit % 10) + 48);
+				putchar(' ');
+				putchar((seconDigit / 10) + 48);
+				putchar((seconDigit % 10) + 48);
 
-	putchar ('\n');
+				if (firstDigit != 98 || seconDigit != 99)
+				{
+					putchar(',');
+					putchar(' ');
+				}
+			}
+			++seconDigit;
+		}
+		++firstDigit;
+	}
+	putchar('\n');
+
 	return (0);
 }
