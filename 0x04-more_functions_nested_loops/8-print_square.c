@@ -7,15 +7,16 @@
  *
  * Return: Always 0 (Success)
 */
+void print_square(int size) {
+	if (size <= 0) {
+		_putchar('\n');
+		return;
+	}
 
-void print_square(int size)
-{
-	int row, column;
-
-	for (row = 1; row <= size; ++row)
-	{
-		for (column = 1; column <= size; ++column)
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size; j++) {
 			_putchar('#');
+		}
 		_putchar('\n');
 	}
 }
