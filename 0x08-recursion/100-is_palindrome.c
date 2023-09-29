@@ -14,7 +14,7 @@ int _strlen_recursion(char *s)
 }
 
 /**
- * _is_palindrome_helper - Helper function to check if the string is a palindrome.
+ * _is_palindrome_helper - Helper fnct to check if the string is a palindrome.
  * @s: The string to be checked.
  * @start: The start index of the string.
  * @end: The end index of the string.
