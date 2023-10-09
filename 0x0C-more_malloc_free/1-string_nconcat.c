@@ -1,56 +1,51 @@
-#include "main.h"
 #include <stdlib.h>
 
 /**
- * string_nconcat - concatenates two strings from s2
- * @s1: first string
- * @s2: second string
- * @n: bytes of s2 to include
+ * string_nconcat - function that concatenates two strings
  *
- * Return: pointer to the new string, or NULL on failure
- */
+ * @s1: string 1
+ * @s2: string 2
+ * @n: bytes of @s2 to add to @s1 to be a new string
+ *
+ * Return: new string followed by the first @n bytes
+ *         of string 2 @s2 or NULL
+*/
+
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	unsigned int len1 = 0, len2 = 0, i = 0, j = 0;
-	char *result;
+	unsigned int l1, l2, i, j;
+	char *str;
 
+	/*treat NULL as empty string*/
 	if (s1 == NULL)
 		s1 = "";
-
 	if (s2 == NULL)
 		s2 = "";
 
-	/* Calculate lengths of s1 and s2 */
-	while (s1[len1])
-		len1++;
+	l1 = l2 = 0;
+	/*length of both s1 & s2 respectively*/
+	while (s1[l1] != '\0')
+		l1++;
+	while (s2[l2] != '\0')
+		l2++;
 
-	while (s2[len2])
-		len2++;
+	/*set n to length of s2*/
+	if (n >= l2)
+		n = l2;
 
-	if (n >= len2)
-		n = len2;
-
-	/* Allocate memory for the new string */
-	result = malloc(len1 + n + 1);
-	if (result == NULL)
+	str = (char *) malloc((l1 + n + 1) * sizeof(char));
+	if (str == NULL)
 		return (NULL);
 
-	/* Copy s1 into the new string */
-	while (i < len1)
+	/*add s1 to str*/
+	for (i = 0; s1[i] != '\0'; i++)
+		str[i] = s1[i];
+	/*add s2 n bytes to str*/
+	for (j = 0; j < n && s2[j] != '\0'; j++)
 	{
-		result[i] = s1[i];
+		str[i] = s2[j];
 		i++;
 	}
-
-	/* Copy up to n bytes of s2 into the new string */
-	while (j < n)
-	{
-		result[i] = s2[j];
-		i++;
-		j++;
-	}
-
-	result[i] = '\0';
-
-	return (result);
+	str[i] = '\0';
+	return (str);
 }
