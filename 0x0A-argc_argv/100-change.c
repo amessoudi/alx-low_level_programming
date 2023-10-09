@@ -49,6 +49,9 @@ int main(int argc, char *argv[])
 	coins += cents / 5;
 	cents %= 5;
 
+	coins += cents / 2;
+	cents %= 2;
+
 	coins += cents;
 
 	print_number(coins);
