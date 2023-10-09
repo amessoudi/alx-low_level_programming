@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 /**
- * string_nconcat - concatenates two strings up to n bytes from s2
+ * string_nconcat - concatenates two strings from s2
  * @s1: first string
  * @s2: second string
  * @n: bytes of s2 to include
