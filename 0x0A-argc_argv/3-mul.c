@@ -1,8 +1,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-
-int _putchar(char c);
 void print_number(int n);
 
 /**
@@ -35,17 +33,6 @@ int main(int argc, char *argv[])
 
 	return (0);
 }
-
-/**
- * _putchar - writes the character c to stdout
- * @c: character to print
- * Return: 1 on success, -1 on error
- */
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-
 /**
  * print_number - prints an integer
  * @n: integer to print
