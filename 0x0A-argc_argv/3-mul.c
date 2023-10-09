@@ -1,5 +1,6 @@
 #include <stdlib.h>
 
+int _putchar(char c);
 void print_number(int n);
 
 /**
@@ -31,6 +32,16 @@ int main(int argc, char *argv[])
 	_putchar('\n');
 
 	return (0);
+}
+
+/**
+ * _putchar - writes the character c to stdout
+ * @c: character to print
+ * Return: 1 on success, -1 on error
+ */
+int _putchar(char c)
+{
+	return (write(1, &c, 1));
 }
 
 /**
