@@ -3,6 +3,7 @@
 #include "main.h"
 
 void print_number(int n);
+int _putchar(char c);
 
 /**
  * main - multiplies two numbers and prints the result
