@@ -6,4 +6,4 @@
 int sum_them_all(const unsigned int n, ...);
 void _putchar(char *str);
 
-#endif VARDIADIC_FUNCTION_H /* VARDIADIC_FUNCTION_H */
+#endif
