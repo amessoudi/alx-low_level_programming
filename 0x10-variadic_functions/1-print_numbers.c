@@ -14,32 +14,33 @@ void print_numbers(const char *separator, const unsigned int n, ...)
 	va_list args;
 	unsigned int i;
 	int num;
+	long long_num;
 
 	va_start(args, n);
 
 	for (i = 0; i < n; i++)
 	{
 		num = va_arg(args, int);
-		
-		if (num < 0)
+		long_num = (long)num;
+
+		if (long_num < 0)
 		{
 			_putchar('-');
-			num = -num;
+			long_num = -long_num;
 		}
 
-		
-		if (num / 10 == 0) 
-			_putchar(num + '0');
+		if (long_num / 10 == 0) 
+			_putchar(long_num + '0');
 		else 
 		{
-			int divisor = 1;
+			long divisor = 1;
 
-			while (num / divisor > 9)
+			while (long_num / divisor > 9)
 				divisor *= 10;
 
 			while (divisor)
 			{
-				_putchar((num / divisor) % 10 + '0');
+				_putchar((long_num / divisor) % 10 + '0');
 				divisor /= 10;
 			}
 		}
