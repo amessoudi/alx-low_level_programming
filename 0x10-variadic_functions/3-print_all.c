@@ -21,7 +21,7 @@ void print_all(const char * const format, ...)
 		switch (format[i])
 		{
 		case 'c':
-			_putchar(va_arg(args, int));
+			putchar(va_arg(args, int));
 			break;
 		case 'i':
 			print_int(va_arg(args, int));
@@ -39,13 +39,13 @@ void print_all(const char * const format, ...)
 		if ((format[i] == 'c' || format[i] == 'i' ||
 			format[i] == 'f' || format[i] == 's') && format[i + 1])
 		{
-			_putchar(',');
-			_putchar(' ');
+			putchar(',');
+			putchar(' ');
 		}
 
 		i++;
 	}
-	_putchar('\n');
+	putchar('\n');
 	va_end(args);
 }
 
@@ -59,12 +59,12 @@ void print_int(int n)
 {
 	if (n < 0)
 	{
-		_putchar('-');
+		putchar('-');
 		n = -n;
 	}
 	if (n / 10)
 		print_int(n / 10);
-	_putchar(n % 10 + '0');
+	putchar(n % 10 + '0');
 }
 
 /**
@@ -76,5 +76,5 @@ void print_int(int n)
 void print_str(char *s)
 {
 	while (*s)
-		_putchar(*s++);
+		putchar(*s++);
 }
