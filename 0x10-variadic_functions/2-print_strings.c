@@ -1,5 +1,6 @@
 #include "variadic_functions.h"
 #include <stdarg.h>
+#include <stddef.h>
 
 /**
  * print_strings - Prints strings followed by a new line.
@@ -13,6 +14,8 @@ void print_strings(const char *separator, const unsigned int n, ...)
 	va_list args;
 	unsigned int i;
 	char *str;
+	char *s;
+	int j;
 
 	va_start(args, n);
 
@@ -21,16 +24,22 @@ void print_strings(const char *separator, const unsigned int n, ...)
 		str = va_arg(args, char*);
 
 		if (str == NULL)
-			for (char *s = "(nil)"; *s; s++)
-				_putchar(*s);
+		{
+			s = "(nil)";
+			while (*s)
+				_putchar(*s++);
+		}
 		else
-			for (int j = 0; str[j]; j++)
+		{
+			for (j = 0; str[j]; j++)
 				_putchar(str[j]);
+		}
 
-		// If separator is not NULL and it's not the last string, print separator
 		if (separator && i < n - 1)
-			for (int j = 0; separator[j]; j++)
+		{
+			for (j = 0; separator[j]; j++)
 				_putchar(separator[j]);
+		}
 	}
 
 	_putchar('\n');
