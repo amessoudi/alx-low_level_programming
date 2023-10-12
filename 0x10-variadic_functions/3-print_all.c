@@ -1,11 +1,12 @@
 #include "variadic_functions.h"
 #include <stdarg.h>
 #include <stdio.h>
+#include <stddef.h>
 
 /**
  * print_all - prints anything.
  * @format: A list of types of arguments passed to the function.
- * 
+ *
  * Return: void.
  */
 void print_all(const char * const format, ...)
@@ -40,7 +41,7 @@ void print_all(const char * const format, ...)
 		if ((format[i] == 'c' || format[i] == 'i' ||
 			format[i] == 'f' || format[i] == 's') && format[i + 1])
 			printf(", ");
-		
+
 		i++;
 	}
 	printf("\n");
