@@ -21,5 +21,6 @@ size_t listint_len(const listint_t *h);
 listint_t *add_nodeint(listint_t **head, const int n);
 listint_t *add_nodeint_end(listint_t **head, const int n);
 listint_t *find_listint_loop(listint_t *head);
+size_t free_listint_safe(listint_t **h);
 
 #endif /* LISTS_H */
