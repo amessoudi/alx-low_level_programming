@@ -8,8 +8,8 @@
  */
 size_t print_listint_safe(const listint_t *head)
 {
-	size_t node_count = 0;
-	const listint_t *hare, *tortoise;
+	const listint_t *tortoise, *hare;
+	size_t nodes = 0;
 
 	if (!head)
 		return (0);
@@ -17,31 +17,36 @@ size_t print_listint_safe(const listint_t *head)
 	tortoise = head;
 	hare = head;
 
-	while (hare && hare->next)
+	while (tortoise && hare && hare->next)
 	{
 		tortoise = tortoise->next;
 		hare = hare->next->next;
-
-		/* If there's a loop, hare and tortoise pointers will meet at some point */
 		if (tortoise == hare)
 		{
-			while (head != hare)
+			tortoise = head;
+			while (tortoise != hare)
 			{
-				printf("[%p] %d\n", (void *)head, head->n);
-				head = head->next;
-				node_count++;
+				printf("[%p] %d\n", (void *)tortoise, tortoise->n);
+				tortoise = tortoise->next;
+				nodes++;
+			}
+			printf("[%p] %d\n", (void *)tortoise, tortoise->n);
+			nodes++;
+			while (hare->next != tortoise)
+			{
+				hare = hare->next;
+				printf("[%p] %d\n", (void *)hare, hare->n);
+				nodes++;
 			}
 			printf("-> [%p] %d\n", (void *)hare, hare->n);
-			return (node_count + 1);
+			return (nodes);
 		}
 	}
-
 	while (head)
 	{
 		printf("[%p] %d\n", (void *)head, head->n);
+		nodes++;
 		head = head->next;
-		node_count++;
 	}
-
-	return (node_count);
+	return (nodes);
 }
