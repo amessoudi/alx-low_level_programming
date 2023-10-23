@@ -26,5 +26,6 @@ size_t print_listint_safe(const listint_t *head);
 listint_t *reverse_listint(listint_t **head);
 void free_listint(listint_t *head);
 void free_listint2(listint_t **head);
+int pop_listint(listint_t **head);
 
 #endif /* LISTS_H */
