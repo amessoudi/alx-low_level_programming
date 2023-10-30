@@ -2,37 +2,52 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 /**
- * create_file - creates a file with specified content
- * @filename: the name of the file to create
- * @text_content: the NULL terminated string to write to the file
+ * read_textfile - reads a text file and prints it to the POSIX standard output
+ * @filename: the name of the file to read
+ * @letters: the number of letters it should read and print
  *
- * Return: 1 on success, -1 on failure
+ * Return: the actual number of letters it could read and print
  */
-int create_file(const char *filename, char *text_content)
+ssize_t read_textfile(const char *filename, size_t letters)
 {
-	int fd, status, length = 0;
+	int fd;
+	ssize_t r_len, w_len;
+	char *buffer;
 
 	if (!filename)
-		return (-1);
+		return (0);
 
-	fd = open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0600);
+	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		return (-1);
+		return (0);
 
-	if (text_content)
+	buffer = malloc(sizeof(char) * letters);
+	if (!buffer)
 	{
-		while (text_content[length])
-			length++;
-		status = write(fd, text_content, length);
-		if (status != length)
-		{
-			close(fd);
-			return (-1);
-		}
+		close(fd);
+		return (0);
 	}
 
+	r_len = read(fd, buffer, letters);
+	if (r_len == -1)
+	{
+		free(buffer);
+		close(fd);
+		return (0);
+	}
+
+	w_len = write(STDOUT_FILENO, buffer, r_len);
+	if (w_len != r_len)
+	{
+		free(buffer);
+		close(fd);
+		return (0);
+	}
+
+	free(buffer);
 	close(fd);
-	return (1);
+	return (w_len);
 }
