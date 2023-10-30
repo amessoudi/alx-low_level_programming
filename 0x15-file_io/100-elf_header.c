@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <elf.h>
+#include <gelf.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 
@@ -17,65 +18,6 @@ void print_abiversion(unsigned char e_ident);
 void print_type(uint16_t e_type);
 void print_entry(uint64_t e_entry);
 
-/**
- * main - entry point
- * @argc: argument count
- * @argv: argument vector
- * Return: 0 on success, 98 on failure
- */
-int main(int argc, char **argv)
-{
-	int fd;
-	Elf64_Ehdr header;
-
-	if (argc != 2)
-	{
-		fprintf(stderr, "Usage: elf_header elf_filename\n");
-		return (98);
-	}
-
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
-	{
-		perror("Error");
-		return (98);
-	}
-
-	if (read(fd, &header, sizeof(Elf64_Ehdr)) != sizeof(Elf64_Ehdr))
-	{
-		fprintf(stderr, "Error: Not an ELF file or read failed\n");
-		close(fd);
-		return (98);
-	}
-
-	if (memcmp(header.e_ident, ELFMAG, SELFMAG) != 0)
-	{
-		fprintf(stderr, "Error: Not an ELF file\n");
-		close(fd);
-		return (98);
-	}
-
-	print_elf_header(&header);
-	close(fd);
-	return (0);
-}
-
-/**
- * print_elf_header - prints the ELF header
- * @header: the ELF header
- */
-void print_elf_header(Elf64_Ehdr *header)
-{
-	printf("Magic:   ");
-	print_magic(header->e_ident);
-	printf("Class:                             ELF%d\n", print_class(header->e_ident[EI_CLASS]));
-	print_data(header->e_ident[EI_DATA]);
-	print_version(header->e_ident[EI_VERSION]);
-	print_osabi(header->e_ident[EI_OSABI]);
-	print_abiversion(header->e_ident[EI_ABIVERSION]);
-	print_type(header->e_type);
-	print_entry(header->e_entry);
-}
 
 void print_magic(unsigned char *e_ident)
 {
@@ -180,4 +122,65 @@ void print_type(uint16_t e_type)
 void print_entry(uint64_t e_entry)
 {
 	printf("Entry point address:               0x%lx\n", e_entry);
+}
+
+
+/**
+ * print_elf_header - prints the ELF header
+ * @header: the ELF header
+ */
+void print_elf_header(Elf64_Ehdr *header)
+{
+	printf("Magic:   ");
+	print_magic(header->e_ident);
+	printf("Class:                             ELF%d\n", print_class(header->e_ident[EI_CLASS]));
+	print_data(header->e_ident[EI_DATA]);
+	print_version(header->e_ident[EI_VERSION]);
+	print_osabi(header->e_ident[EI_OSABI]);
+	print_abiversion(header->e_ident[EI_ABIVERSION]);
+	print_type(header->e_type);
+	print_entry(header->e_entry);
+}
+
+/**
+ * main - entry point
+ * @argc: argument count
+ * @argv: argument vector
+ * Return: 0 on success, 98 on failure
+ */
+int main(int argc, char **argv)
+{
+	int fd;
+	Elf64_Ehdr header;
+
+	if (argc != 2)
+	{
+		fprintf(stderr, "Usage: elf_header elf_filename\n");
+		return (98);
+	}
+
+	fd = open(argv[1], O_RDONLY);
+	if (fd < 0)
+	{
+		perror("Error");
+		return (98);
+	}
+
+	if (read(fd, &header, sizeof(Elf64_Ehdr)) != sizeof(Elf64_Ehdr))
+	{
+		fprintf(stderr, "Error: Not an ELF file or read failed\n");
+		close(fd);
+		return (98);
+	}
+
+	if (memcmp(header.e_ident, ELFMAG, SELFMAG) != 0)
+	{
+		fprintf(stderr, "Error: Not an ELF file\n");
+		close(fd);
+		return (98);
+	}
+
+	print_elf_header(&header);
+	close(fd);
+	return (0);
 }
