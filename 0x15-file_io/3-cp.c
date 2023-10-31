@@ -20,7 +20,7 @@ void close_fd(int fd, const char *filename)
 	if (close(fd) < 0)
 	{
 		dprintf(STDERR_FILENO,
-			"Error: Can't close fd %d for file %s\n", fd, filename);
+			"Error: Can't fd %d for %s\n", fd, filename);
 		exit(100);
 	}
 }
@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
 	fd_from = open(argv[1], O_RDONLY);
 	if (fd_from < 0)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 		exit(98);
 	}
 
@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
 	if (fd_to < 0)
 	{
 		close_fd(fd_from, argv[1]);
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+		dprintf(STDERR_FILENO, "Error: Can't write %s\n", argv[2]);
 		exit(99);
 	}
 
@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
 		{
 			close_fd(fd_from, argv[1]);
 			close_fd(fd_to, argv[2]);
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+			dprintf(STDERR_FILENO, "Error: Can't write %s\n", argv[2]);
 			exit(99);
 		}
 	}
