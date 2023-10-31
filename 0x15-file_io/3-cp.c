@@ -17,8 +17,10 @@
  */
 void close_fd(int fd, const char *filename)
 {
-	if (close(fd) < 0) {
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d for file %s\n", fd, filename);
+	if (close(fd) < 0)
+	{
+		dprintf(STDERR_FILENO,
+			"Error: Can't close fd %d for file %s\n", fd, filename);
 		exit(100);
 	}
 }
@@ -80,5 +82,5 @@ int main(int argc, char *argv[])
 	close_fd(fd_from, argv[1]);
 	close_fd(fd_to, argv[2]);
 
-	return 0;
+	return (0);
 }
