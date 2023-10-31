@@ -6,8 +6,10 @@
  */
 void print_magic(unsigned char *e_ident)
 {
+	int i;
+
 	printf("  Magic:   ");
-	for (int i = 0; i < EI_NIDENT; i++)
+	for (i = 0; i < EI_NIDENT; i++)
 		printf("%02x ", e_ident[i]);
 	printf("\n");
 }
@@ -174,42 +176,42 @@ int main(int argc, char *argv[])
 	if (argc != 2)
 	{
 		fprintf(stderr, "Usage: %s elf_filename\n", argv[0]);
-		return (98);
+		return 98;
 	}
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 	{
 		perror("Error opening file");
-		return (98);
+		return 98;
 	}
 
 	if (read(fd, e_ident, EI_NIDENT) != EI_NIDENT)
 	{
 		fprintf(stderr, "Error reading ELF header\n");
 		close(fd);
-		return (98);
+		return 98;
 	}
 
 	if (memcmp(e_ident, ELFMAG, SELFMAG) != 0)
 	{
 		fprintf(stderr, "Not an ELF file\n");
 		close(fd);
-		return (98);
+		return 98;
 	}
 
 	if (lseek(fd, 0, SEEK_SET) == (off_t)-1)
 	{
 		perror("Error seeking in file");
 		close(fd);
-		return (98);
+		return 98;
 	}
 
 	if (read(fd, &header, sizeof(header)) != sizeof(header))
 	{
 		fprintf(stderr, "Error reading ELF header\n");
 		close(fd);
-		return (98);
+		return 98;
 	}
 
 	close(fd);
@@ -224,5 +226,5 @@ int main(int argc, char *argv[])
 	print_type(header.e_type);
 	print_entry(header.e_entry);
 
-	return (0);
+	return 0;
 }
