@@ -148,7 +148,7 @@ void print_type(uint16_t e_type)
 		printf("CORE (Core file)\n");
 		break;
 	default:
-		printf("<unknown: %x>\n", e_type);
+		printf("\n");
 	}
 }
 
