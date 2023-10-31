@@ -226,5 +226,6 @@ int main(int argc, char *argv[])
 	print_type(header.e_type);
 	print_entry(header.e_entry);
 
-	return 0;
+	close(fd);
+	return (0);
 }
