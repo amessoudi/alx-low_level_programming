@@ -32,25 +32,29 @@ void print_elf_header(Elf64_Ehdr *header)
 	int i;
 
 	printf("ELF Header:\n");
-	printf("Magic:   ");
+	printf("  Magic:   ");
 	for (i = 0; i < EI_NIDENT; i++)
 		printf("%02x ", header->e_ident[i]);
 	printf("\n");
 
-	printf("Class:                             ELF%d\n",
+	printf("  Class:                             ELF%d\n",
 		   header->e_ident[EI_CLASS] == ELFCLASS64 ? 64 : 32);
-	printf("Data:                              2's complement, ");
-	printf("%s\n",
-		   header->e_ident[EI_DATA] == ELFDATA2LSB ? "little endian" : "big endian");
-	printf("Version:                           %d (current)\n",
+	printf("  Data:                              2's complement, ");
+	printf("%s\n", header->e_ident[EI_DATA] == ELFDATA2LSB ?
+		   "little endian" : "big endian");
+	printf("  Version:                           %d (current)\n",
 		   header->e_version);
-	printf("OS/ABI:                            UNIX - System V\n");
-	printf("ABI Version:                       %d\n",
+	printf("  OS/ABI:                            UNIX - ");
+	printf("System V\n");
+	printf("  ABI Version:                       %d\n",
 		   header->e_ident[EI_ABIVERSION]);
-	printf("Type:                              %d\n",
-		   header->e_type);
-	printf("Entry point address:               0x%lx\n",
-		   (unsigned long)header->e_entry);
+	printf("  Type:                              ");
+	printf("%d\n", header->e_type);
+	printf("  Entry point address:               0x");
+	if (header->e_ident[EI_CLASS] == ELFCLASS32)
+		printf("%x\n", ((Elf32_Ehdr *)header)->e_entry);
+	else
+		printf("%lx\n", header->e_entry);
 }
 
 /**
